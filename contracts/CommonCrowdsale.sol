@@ -3,7 +3,7 @@ pragma solidity ^0.4.18;
 import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import './LockableChanges.sol';
-import './GENSharesToken.sol';
+import './TWNSharesToken.sol';
 
 contract CommonCrowdsale is Ownable, LockableChanges {
 
@@ -50,7 +50,7 @@ contract CommonCrowdsale is Ownable, LockableChanges {
 
   Bonus[] public bonuses;
 
-  GENSharesToken public token;
+  TWNSharesToken public token;
 
   modifier saleIsOn() {
     require(msg.value >= minInvestedLimit && now >= start && now < end && invested < hardcap);
@@ -69,12 +69,20 @@ contract CommonCrowdsale is Ownable, LockableChanges {
     bountyTokensPercent = newBountyTokensPercent;
   }
 
+  function setFoundersTokensPercent(uint newFoundersTokensPercent) public onlyOwner notLocked { 
+    foundersTokensPercent = newFoundersTokensPercent;
+  }
+
   function setAdvisorsTokensPercent(uint newAdvisorsTokensPercent) public onlyOwner notLocked { 
     advisorsTokensPercent = newAdvisorsTokensPercent;
   }
 
   function setDevTokensPercent(uint newDevTokensPercent) public onlyOwner notLocked { 
     devTokensPercent = newDevTokensPercent;
+  }
+
+  function setFoundersTokensWallet(address newFoundersTokensWallet) public onlyOwner notLocked { 
+    foundersTokensWallet = newFoundersTokensWallet;
   }
 
   function setBountyTokensWallet(address newBountyTokensWallet) public onlyOwner notLocked { 
@@ -95,7 +103,7 @@ contract CommonCrowdsale is Ownable, LockableChanges {
   }
 
   function setToken(address newToken) public onlyOwner notLocked { 
-    token = GENSharesToken(newToken);
+    token = TWNSharesToken(newToken);
   }
 
   function setWallet(address newWallet) public onlyOwner notLocked { 
@@ -175,7 +183,7 @@ contract CommonCrowdsale is Ownable, LockableChanges {
 
   function retrieveTokens(address anotherToken) public onlyOwner {
     ERC20 alienToken = ERC20(anotherToken);
-    alienToken.transfer(wallet, token.balanceOf(this));
+    alienToken.transfer(wallet, alienToken.balanceOf(this));
   }
 
 }

@@ -14,14 +14,14 @@ contract Deployer is Ownable {
   TWNSharesToken public token;
 
   function deploy() public onlyOwner {
-    owner = ;  
+    owner = address( );  
       
     token = new TWNSharesToken();
     
     presale = new Presale();
     presale.setToken(token);
     token.setSaleAgent(presale);
-    presale.setMinInvestedLimit(100000000000000000);  
+    presale.setMinInvestedLimit(1000000000000000000);  
     presale.setPrice(290000000000000000000);
     presale.setBountyTokensPercent(2);
     presale.setAdvisorsTokensPercent(1);
@@ -35,7 +35,7 @@ contract Deployer is Ownable {
     presale.addBonus(100,30);
     presale.setStart( );
     presale.setEnd( );    
-    presale.setDevLimit(45000000000000000000);
+    presale.setDevLimit(6000000000000000000);
     presale.setWallet( );
     presale.setBountyTokensWallet( );
     presale.setDevTokensWallet( );

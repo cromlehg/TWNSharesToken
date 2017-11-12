@@ -237,7 +237,7 @@ contract LockableChanges is Ownable {
  * @dev Issue: * https://github.com/OpenZeppelin/zeppelin-solidity/issues/120
  * Based on code by TokenMarketNet: https://github.com/TokenMarketNet/ico/blob/master/contracts/MintableToken.sol
  */
-contract GENSharesToken is StandardToken, Ownable {	
+contract TWNSharesToken is StandardToken, Ownable {	
 
   using SafeMath for uint256;
 
@@ -245,9 +245,9 @@ contract GENSharesToken is StandardToken, Ownable {
 
   event MintFinished();
     
-  string public constant name = "GEN Shares";
+  string public constant name = "TWN Shares";
    
-  string public constant symbol = "GEN";
+  string public constant symbol = "TWN";
     
   uint32 public constant decimals = 18;
 
@@ -308,11 +308,15 @@ contract CommonCrowdsale is Ownable, LockableChanges {
 
   address public advisorsTokensWallet;
 
+  address public foundersTokensWallet;
+
   uint public bountyTokensPercent;
 
   uint public devTokensPercent;
 
   uint public advisorsTokensPercent;
+
+  uint public foundersTokensPercent;
 
   struct Bonus {
     uint periodInDays;
@@ -321,7 +325,7 @@ contract CommonCrowdsale is Ownable, LockableChanges {
 
   Bonus[] public bonuses;
 
-  GENSharesToken public token;
+  TWNSharesToken public token;
 
   modifier saleIsOn() {
     require(msg.value >= minInvestedLimit && now >= start && now < end && invested < hardcap);
@@ -332,12 +336,16 @@ contract CommonCrowdsale is Ownable, LockableChanges {
     hardcap = newHardcap;
   }
  
-  function setStart(uint newStart) public onlyOwner notLocked { 
+  function setStart(uint newStart) public onlyOwner { 
     start = newStart;
   }
 
   function setBountyTokensPercent(uint newBountyTokensPercent) public onlyOwner notLocked { 
     bountyTokensPercent = newBountyTokensPercent;
+  }
+
+  function setFoundersTokensPercent(uint newFoundersTokensPercent) public onlyOwner notLocked { 
+    foundersTokensPercent = newFoundersTokensPercent;
   }
 
   function setAdvisorsTokensPercent(uint newAdvisorsTokensPercent) public onlyOwner notLocked { 
@@ -346,6 +354,10 @@ contract CommonCrowdsale is Ownable, LockableChanges {
 
   function setDevTokensPercent(uint newDevTokensPercent) public onlyOwner notLocked { 
     devTokensPercent = newDevTokensPercent;
+  }
+
+  function setFoundersTokensWallet(address newFoundersTokensWallet) public onlyOwner notLocked { 
+    foundersTokensWallet = newFoundersTokensWallet;
   }
 
   function setBountyTokensWallet(address newBountyTokensWallet) public onlyOwner notLocked { 
@@ -360,13 +372,13 @@ contract CommonCrowdsale is Ownable, LockableChanges {
     devTokensWallet = newDevTokensWallet;
   }
 
-  function setEnd(uint newEnd) public onlyOwner notLocked { 
+  function setEnd(uint newEnd) public onlyOwner { 
     require(start < newEnd);
     end = newEnd;
   }
 
   function setToken(address newToken) public onlyOwner notLocked { 
-    token = GENSharesToken(newToken);
+    token = TWNSharesToken(newToken);
   }
 
   function setWallet(address newWallet) public onlyOwner notLocked { 
@@ -390,7 +402,7 @@ contract CommonCrowdsale is Ownable, LockableChanges {
   }
 
   function mintExtendedTokens() internal {
-    uint extendedTokensPercent = bountyTokensPercent.add(devTokensPercent).add(advisorsTokensPercent);      
+    uint extendedTokensPercent = bountyTokensPercent.add(devTokensPercent).add(advisorsTokensPercent).add(foundersTokensPercent);      
     uint extendedTokens = minted.mul(extendedTokensPercent).div(PERCENT_RATE.sub(extendedTokensPercent));
     uint summaryTokens = extendedTokens + minted;
 
@@ -399,6 +411,9 @@ contract CommonCrowdsale is Ownable, LockableChanges {
 
     uint advisorsTokens = summaryTokens.mul(advisorsTokensPercent).div(PERCENT_RATE);
     mintAndSendTokens(advisorsTokensWallet, advisorsTokens);
+
+    uint foundersTokens = summaryTokens.mul(foundersTokensPercent).div(PERCENT_RATE);
+    mintAndSendTokens(foundersTokensWallet, foundersTokens);
 
     uint devTokens = summaryTokens.sub(advisorsTokens).sub(bountyTokens);
     mintAndSendTokens(devTokensWallet, devTokens);
@@ -443,11 +458,10 @@ contract CommonCrowdsale is Ownable, LockableChanges {
 
   function retrieveTokens(address anotherToken) public onlyOwner {
     ERC20 alienToken = ERC20(anotherToken);
-    alienToken.transfer(wallet, token.balanceOf(this));
+    alienToken.transfer(wallet, alienToken.balanceOf(this));
   }
 
 }
-
 contract Presale is CommonCrowdsale {
   
   uint public devLimit;
@@ -545,53 +559,60 @@ contract Deployer is Ownable {
  
   ICO public ico;
 
-  GENSharesToken public token;
+  TWNSharesToken public token;
 
   function deploy() public onlyOwner {
-    owner = 0x379264aF7df7CF8141a23bC989aa44266DDD2c62;  
+    owner = 0x445c94f566abf8e28739c474c572d356d03ad999;  
       
-    token = new GENSharesToken();
+    token = new TWNSharesToken();
     
     presale = new Presale();
     presale.setToken(token);
     token.setSaleAgent(presale);
-    presale.setMinInvestedLimit(100000000000000000);  
-    presale.setPrice(250000000000000000000);
-    presale.setBountyTokensPercent(4);
-    presale.setAdvisorsTokensPercent(2);
+    presale.setMinInvestedLimit(1000000000000000000);  
+    presale.setPrice(290000000000000000000);
+    presale.setBountyTokensPercent(2);
+    presale.setAdvisorsTokensPercent(1);
     presale.setDevTokensPercent(10);
-    presale.setSoftcap(45000000000000000000);
-    presale.setHardcap(50000000000000000000000);
-    presale.addBonus(7,50);
-    presale.addBonus(7,40);
-    presale.addBonus(100,35);
-    presale.setStart(1511571600);
-    presale.setEnd(1514156400);    
-    presale.setDevLimit(45000000000000000000);
-    presale.setWallet(0x4bB656423f5476FeC4AA729aB7B4EE0fc4d0B314);
-    presale.setBountyTokensWallet(0xcACBE5d8Fb017407907026804Fe8BE64B08511f4);
-    presale.setDevTokensWallet(0xa20C62282bEC52F9dA240dB8cFFc5B2fc8586652);
-    presale.setAdvisorsTokensWallet(0xD3D85a495c7E25eAd39793F959d04ACcDf87e01b);
-    presale.setDevWallet(0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770);
+    presale.setFoundersTokensPercent(10);
+    
+    // fix in prod
+    presale.setSoftcap(1000000000000000000);
+    presale.setHardcap(2000000000000000000);
+    presale.addBonus(1,40);
+    presale.addBonus(100,30);
+    presale.setStart(1510444800);
+    presale.setEnd(1510531200);    
+    presale.setDevLimit(600000000000000000);
+    presale.setWallet(0xb8600b335332724df5108fc0595002409c2adbc6);
+    presale.setBountyTokensWallet(0x66ff3b89e15acb0b5e69179a2e54c494b89bdb1b);
+    presale.setDevTokensWallet(0x54a67f1507deb1bfc58ba3ffa94b59fc50eb74bc);
+    presale.setAdvisorsTokensWallet(0xd1bc33b2c89c93e65b0d476b8b50bfee82594847);
+    presale.setFoundersTokensWallet(0xe619bcd3c4609ae269b5ebe5bf0cb7d1dc70c210);
+    presale.setDevWallet(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
 
     ico = new ICO();
     ico.setToken(token); 
     presale.setNextSaleAgent(ico);
     ico.setMinInvestedLimit(100000000000000000);
     ico.setPrice(250000000000000000000);
-    ico.setBountyTokensPercent(4);
-    ico.setAdvisorsTokensPercent(2);
+    ico.setBountyTokensPercent(2);
+    ico.setAdvisorsTokensPercent(1);
     ico.setDevTokensPercent(10);
+    ico.setFoundersTokensPercent(10);
 
-    ico.setHardcap(206000000000000000000000);
-    ico.addBonus(7,25);
-    ico.addBonus(14,10);
-    ico.setStart(1514163600);
-    ico.setEnd(1517356800);
-    ico.setWallet(0x65954fb8f45b40c9A60dffF3c8f4F39839Bf3596);
-    ico.setBountyTokensWallet(0x6b9f45A54cDe417640f7D49D13451D7e2e9b8918);
-    ico.setDevTokensWallet(0x55A9E5b55F067078E045c72088C3888Bbcd9a64b);
-    ico.setAdvisorsTokensWallet(0x3e11Ff0BDd160C1D85cdf04e012eA9286ae1A964);
+    // fix in prod
+    ico.setHardcap(50000000000000000000000);
+    ico.addBonus(1,25);
+    ico.addBonus(100,15);
+    ico.addBonus(100,10);
+    ico.setStart(1510578000);
+    ico.setEnd(1510750800);
+    ico.setWallet(0x67d78de2f2819dcbd47426a1ac6a23b9e9c9d300);
+    ico.setBountyTokensWallet(0x772215ccf488031991f7dcc65e80a7c1fd497e75);
+    ico.setDevTokensWallet(0x87f2f8a94986d9049147590e12a64ffaa9f946a8);
+    ico.setAdvisorsTokensWallet(0x6bb6dbc29f8adb3a7627ea65372fe471509b7698);
+    ico.setFoundersTokensWallet(0x39ecc9e56979c884b28d8c791890e279ab1ec5f4);
 
     presale.lockChanges();
     ico.lockChanges();
