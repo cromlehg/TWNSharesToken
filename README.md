@@ -165,10 +165,13 @@ _Milestones_
 #### Investors
 ##### Presale
 * 0xb8600b335332724Df5108Fc0595002409c2ADbC6 - invested 1.1 ETH => 446.6 tokens : https://kovan.etherscan.io/tx/0xe5b544e72072125a4c04a8eb1e89bd6b18f663152b33b01afc3c4ce8b9f7928f
+##### Mainsale
+* 0xb8600b335332724Df5108Fc0595002409c2ADbC6 - invested 1.1 ETH => 343.75 tokens : https://kovan.etherscan.io/tx/0x51f932ebd15f03514f7e172d6847f69cd0e0c2b4f9aecce5a055586f23708161
+
 ##### Presale finish operations
 Status - softcap reached!
-* finishMinting:
-* widthraw:
+* finishMinting: https://kovan.etherscan.io/tx/0xa06a9b5e19a132bcf4b3578b553e14fb25e5e881ba4797fa075020153e875dc1
+* widthraw: https://kovan.etherscan.io/tx/0x6fab02ff9a5caa1eed9f47e0e8eee97657a478d0e0b9b1fc81f3ba45cad0908b
 
 #### Transfer tokens operations
 * Presale time transfer 10 TWN tokens from 0xb8600b335332724Df5108Fc0595002409c2ADbC6 to 0xe2598dd05eb8e8095f24d4f5c39e77579dab19a5: https://kovan.etherscan.io/tx/0xefaba73188ae6c6335b9f89c3755a7f03eb643cb97a5574724caaaa1097e642d
