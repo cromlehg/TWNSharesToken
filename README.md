@@ -55,9 +55,9 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 
 ### Links
 
-* _Token_
-* _Presale_
-* _ICO_
+* _Token_ - https://etherscan.io/token/0xfd31b62550977b11deaedd1b8d359e71a3d4ff1f
+* _Presale_ - https://etherscan.io/address/0x77a6c29cb6ee82b9aede54939af27ace13c7d3f1
+* _ICO_ - https://etherscan.io/address/0x52c6229a5a4a3ca88968ac60d3502007eb3f8d86
 
 ### Crowdsale stages
 
@@ -132,7 +132,7 @@ _Milestones_
 * _Advisors tokens wallet_     : 0xD1BC33B2c89C93E65b0D476B8b50BFee82594847
 * _Founders tokens wallet_     : 0xE619BCD3c4609AE269B5eBE5bf0cb7D1Dc70C210
 * _Contract manager_           : 0x445c94f566abF8E28739c474c572D356d03Ad999
-* _ETH Wallets_                : 0xb8600b335332724Df5108Fc0595002409c2ADbC6, 0xc56b0d5BBc2bF9b760ebD797DAcD3A683Cb8498F
+* _ETH Wallets_                : 0xc56b0d5BBc2bF9b760ebD797DAcD3A683Cb8498F, 0xb8600b335332724Df5108Fc0595002409c2ADbC6
 
 _Milestones_
 
