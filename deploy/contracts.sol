@@ -340,35 +340,35 @@ contract CommonCrowdsale is Ownable, LockableChanges {
     start = newStart;
   }
 
-  function setBountyTokensPercent(uint newBountyTokensPercent) public onlyOwner notLocked { 
+  function setBountyTokensPercent(uint newBountyTokensPercent) public onlyOwner { 
     bountyTokensPercent = newBountyTokensPercent;
   }
 
-  function setFoundersTokensPercent(uint newFoundersTokensPercent) public onlyOwner notLocked { 
+  function setFoundersTokensPercent(uint newFoundersTokensPercent) public onlyOwner { 
     foundersTokensPercent = newFoundersTokensPercent;
   }
 
-  function setAdvisorsTokensPercent(uint newAdvisorsTokensPercent) public onlyOwner notLocked { 
+  function setAdvisorsTokensPercent(uint newAdvisorsTokensPercent) public onlyOwner { 
     advisorsTokensPercent = newAdvisorsTokensPercent;
   }
 
-  function setDevTokensPercent(uint newDevTokensPercent) public onlyOwner notLocked { 
+  function setDevTokensPercent(uint newDevTokensPercent) public onlyOwner { 
     devTokensPercent = newDevTokensPercent;
   }
 
-  function setFoundersTokensWallet(address newFoundersTokensWallet) public onlyOwner notLocked { 
+  function setFoundersTokensWallet(address newFoundersTokensWallet) public onlyOwner { 
     foundersTokensWallet = newFoundersTokensWallet;
   }
 
-  function setBountyTokensWallet(address newBountyTokensWallet) public onlyOwner notLocked { 
+  function setBountyTokensWallet(address newBountyTokensWallet) public onlyOwner { 
     bountyTokensWallet = newBountyTokensWallet;
   }
 
-  function setAdvisorsTokensWallet(address newAdvisorsTokensWallet) public onlyOwner notLocked { 
+  function setAdvisorsTokensWallet(address newAdvisorsTokensWallet) public onlyOwner { 
     advisorsTokensWallet = newAdvisorsTokensWallet;
   }
 
-  function setDevTokensWallet(address newDevTokensWallet) public onlyOwner notLocked { 
+  function setDevTokensWallet(address newDevTokensWallet) public onlyOwner { 
     devTokensWallet = newDevTokensWallet;
   }
 
@@ -480,11 +480,11 @@ contract Presale is CommonCrowdsale {
 
   mapping (address => uint) public balances;
 
-  function setNextSaleAgent(address newNextSaleAgent) public onlyOwner notLocked {
+  function setNextSaleAgent(address newNextSaleAgent) public onlyOwner {
     nextSaleAgent = newNextSaleAgent;
   }
 
-  function setSoftcap(uint newSoftcap) public onlyOwner notLocked {
+  function setSoftcap(uint newSoftcap) public onlyOwner {
     softcap = newSoftcap;
   }
 
@@ -562,7 +562,7 @@ contract Deployer is Ownable {
   TWNSharesToken public token;
 
   function deploy() public onlyOwner {
-    owner = 0x445c94f566abf8e28739c474c572d356d03ad999;  
+    owner = 0x1c7315bc528F322909beDDA8F65b053546d98246;  
       
     token = new TWNSharesToken();
     
@@ -577,19 +577,19 @@ contract Deployer is Ownable {
     presale.setFoundersTokensPercent(10);
     
     // fix in prod
-    presale.setSoftcap(1000000000000000000);
-    presale.setHardcap(2000000000000000000);
+    presale.setSoftcap(1000000000000000000000);
+    presale.setHardcap(20000000000000000000000);
     presale.addBonus(1,40);
     presale.addBonus(100,30);
-    presale.setStart(1510444800);
-    presale.setEnd(1510531200);    
-    presale.setDevLimit(600000000000000000);
-    presale.setWallet(0xb8600b335332724df5108fc0595002409c2adbc6);
-    presale.setBountyTokensWallet(0x66ff3b89e15acb0b5e69179a2e54c494b89bdb1b);
-    presale.setDevTokensWallet(0x54a67f1507deb1bfc58ba3ffa94b59fc50eb74bc);
-    presale.setAdvisorsTokensWallet(0xd1bc33b2c89c93e65b0d476b8b50bfee82594847);
-    presale.setFoundersTokensWallet(0xe619bcd3c4609ae269b5ebe5bf0cb7d1dc70c210);
-    presale.setDevWallet(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
+//    presale.setStart( );
+//    presale.setEnd( );    
+    presale.setDevLimit(6000000000000000000);
+    presale.setWallet(0xb710d808Ca41c030D14721363FF5608Eabc5bA91);
+    presale.setBountyTokensWallet(0x565d8E01c63EDF9A5D9F17278b3c2118940e81EF);
+    presale.setDevTokensWallet(0x2d509f95f7a5F400Ae79b22F40AfB7aCc60dE6ba);
+    presale.setAdvisorsTokensWallet(0xc422bd1dAc78b1610ab9bEC43EEfb1b81785667D);
+    presale.setFoundersTokensWallet(0xC8C959B4ae981CBCF032Ad05Bd5e60c326cbe35d);
+    presale.setDevWallet(0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770);
 
     ico = new ICO();
     ico.setToken(token); 
@@ -603,16 +603,16 @@ contract Deployer is Ownable {
 
     // fix in prod
     ico.setHardcap(50000000000000000000000);
-    ico.addBonus(1,25);
-    ico.addBonus(100,15);
+    ico.addBonus(7,25);
+    ico.addBonus(7,15);
     ico.addBonus(100,10);
-    ico.setStart(1510578000);
-    ico.setEnd(1510750800);
-    ico.setWallet(0x67d78de2f2819dcbd47426a1ac6a23b9e9c9d300);
-    ico.setBountyTokensWallet(0x772215ccf488031991f7dcc65e80a7c1fd497e75);
-    ico.setDevTokensWallet(0x87f2f8a94986d9049147590e12a64ffaa9f946a8);
-    ico.setAdvisorsTokensWallet(0x6bb6dbc29f8adb3a7627ea65372fe471509b7698);
-    ico.setFoundersTokensWallet(0x39ecc9e56979c884b28d8c791890e279ab1ec5f4);
+//    ico.setStart( );
+//    ico.setEnd( );
+    ico.setWallet(0x87AF29276bA384b1Df9008Fd573155F7fC47E4D8);
+    ico.setBountyTokensWallet(0xeF0a993cC6067AD57a1A55A6B885aEF662334641);
+    ico.setDevTokensWallet(0xFa6229F284387F6ccDb61879c3C12D9896310DB3);
+    ico.setAdvisorsTokensWallet(0xb1f9C6653210D7551Ad24C7978B10Fb0bfE5C177);
+    ico.setFoundersTokensWallet(0x5CBB99ab4aa3EFf834217262db11D7486af7Cbfd);
 
     presale.lockChanges();
     ico.lockChanges();
@@ -623,4 +623,3 @@ contract Deployer is Ownable {
   }
 
 }
-

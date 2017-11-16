@@ -3,7 +3,6 @@
   <img src="./logo.png">
 </p>
 
-
 * _Standart_        : ERC20
 * _Name_            : TWN Shares
 * _Ticket_          : TWN
@@ -72,12 +71,12 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Developers_                 : 10% of total tokens
 * _Start_                      : 
 * _End_                        : 
-* _Developers tokens wallet_   : 
-* _Bounty tokens wallet_       : 
-* _Advisors tokens wallet_     : 
-* _Founders tokens wallet_     : 
-* _Contract manager_           : 
-* _ETH Wallets_                : , 0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770
+* _Developers tokens wallet_   : 0x2d509f95f7a5F400Ae79b22F40AfB7aCc60dE6ba
+* _Bounty tokens wallet_       : 0x565d8E01c63EDF9A5D9F17278b3c2118940e81EF
+* _Advisors tokens wallet_     : 0xc422bd1dAc78b1610ab9bEC43EEfb1b81785667D
+* _Founders tokens wallet_     : 0xC8C959B4ae981CBCF032Ad05Bd5e60c326cbe35d
+* _Contract manager_           : 0x1c7315bc528F322909beDDA8F65b053546d98246
+* _ETH Wallets_                : 0xb710d808Ca41c030D14721363FF5608Eabc5bA91, 0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770
 
 _Milestones_
 
@@ -93,12 +92,12 @@ _Milestones_
 * _Developers_                 : 10% of total tokens
 * _Start_                      : 
 * _End_                        : 
-* _Developers tokens wallet_   : 
-* _Bounty tokens wallet_       : 
-* _Advisors tokens wallet_     : 
-* _Founders tokens wallet_     : 
-* _Contract manager_           : 
-* _ETH Wallets_                : 
+* _Developers tokens wallet_   : 0xFa6229F284387F6ccDb61879c3C12D9896310DB3
+* _Bounty tokens wallet_       : 0xeF0a993cC6067AD57a1A55A6B885aEF662334641
+* _Advisors tokens wallet_     : 0xb1f9C6653210D7551Ad24C7978B10Fb0bfE5C177
+* _Founders tokens wallet_     : 0x5CBB99ab4aa3EFf834217262db11D7486af7Cbfd
+* _Contract manager_           : 0x1c7315bc528F322909beDDA8F65b053546d98246
+* _ETH Wallets_                : 0x87AF29276bA384b1Df9008Fd573155F7fC47E4D8
 
 _Milestones_
 1. 7 days                      : +25%
