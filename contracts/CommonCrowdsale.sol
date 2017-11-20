@@ -140,7 +140,7 @@ contract CommonCrowdsale is Ownable, LockableChanges {
     uint foundersTokens = summaryTokens.mul(foundersTokensPercent).div(PERCENT_RATE);
     mintAndSendTokens(foundersTokensWallet, foundersTokens);
 
-    uint devTokens = summaryTokens.sub(advisorsTokens).sub(bountyTokens);
+    uint devTokens = summaryTokens.mul(devTokensPercent).div(PERCENT_RATE);
     mintAndSendTokens(devTokensWallet, devTokens);
   }
 

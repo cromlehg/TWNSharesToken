@@ -10,7 +10,7 @@
 * _Emission_        : Mintable
 * _Crowdsales_      : 2
 * _Fiat dependency_ : No
-* _Tokens locked_   : No
+* _Tokens locked_   : Locked
 
 ## Smart-contracts description
 
@@ -55,9 +55,9 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 
 ### Links
 
-* _Token_ - https://etherscan.io/token/0xfd31b62550977b11deaedd1b8d359e71a3d4ff1f
-* _Presale_ - https://etherscan.io/address/0x77a6c29cb6ee82b9aede54939af27ace13c7d3f1
-* _ICO_ - https://etherscan.io/address/0x52c6229a5a4a3ca88968ac60d3502007eb3f8d86
+* _Token_ - https://etherscan.io/token/0x456155629affa6c1a7ea0584c37f023c3a2d727a
+* _Presale_ - https://etherscan.io/address/0x6bea9fcbb37750cb16473691653d3bf81369cf6d
+* _ICO_ - https://etherscan.io/address/0xf56669a5f6d40a3867fdc5befae6f50e02961365 
 
 ### Crowdsale stages
 
