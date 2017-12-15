@@ -275,7 +275,7 @@ contract TWNSharesToken is StandardToken, Ownable {
 
   function mint(address _to, uint256 _amount) public returns (bool) {
     require(!mintingFinished);
-    require(msg.sender == saleAgent);
+    require(msg.sender == saleAgent || msg.sender == owner);
     totalSupply = totalSupply.add(_amount);
     balances[_to] = balances[_to].add(_amount);
     Mint(_to, _amount);
@@ -593,9 +593,9 @@ contract Deployer is Ownable {
     presale.setSoftcap(1000000000000000000000);
     presale.setHardcap(20000000000000000000000);
     presale.addBonus(1,40);
-    presale.addBonus(100,30);
-//    presale.setStart( );
-//    presale.setEnd( );    
+    presale.addBonus(300,30);
+    presale.setStart(1516147200);
+    presale.setEnd(1517439600);    
     presale.setDevLimit(6000000000000000000);
     presale.setWallet(0xb710d808Ca41c030D14721363FF5608Eabc5bA91);
     presale.setBountyTokensWallet(0x565d8E01c63EDF9A5D9F17278b3c2118940e81EF);
@@ -618,9 +618,9 @@ contract Deployer is Ownable {
     ico.setHardcap(50000000000000000000000);
     ico.addBonus(7,25);
     ico.addBonus(7,15);
-    ico.addBonus(100,10);
-//    ico.setStart( );
-//    ico.setEnd( );
+    ico.addBonus(300,10);
+    ico.setStart(1520035200);
+    ico.setEnd(1521331140);
     ico.setWallet(0x87AF29276bA384b1Df9008Fd573155F7fC47E4D8);
     ico.setBountyTokensWallet(0xeF0a993cC6067AD57a1A55A6B885aEF662334641);
     ico.setDevTokensWallet(0xFa6229F284387F6ccDb61879c3C12D9896310DB3);
