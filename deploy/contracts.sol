@@ -589,8 +589,8 @@ contract Deployer is Ownable {
     presale.setFoundersTokensPercent(10);
     
     // fix in prod
-    presale.setSoftcap(1000000000000000000000);
-    presale.setHardcap(20000000000000000000000);
+    presale.setSoftcap(1);
+    presale.setHardcap(20000000000000000000000000);
     presale.addBonus(1,40);
     presale.addBonus(300,30);
     presale.setStart(1516147200);
@@ -614,7 +614,7 @@ contract Deployer is Ownable {
     ico.setFoundersTokensPercent(10);
 
     // fix in prod
-    ico.setHardcap(50000000000000000000000);
+    ico.setHardcap(200000000000000000000000);
     ico.addBonus(7,25);
     ico.addBonus(7,15);
     ico.addBonus(300,10);
